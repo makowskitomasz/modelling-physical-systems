@@ -5,5 +5,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: pip install nbconvert
-      - uses: actions/checkout
-      - run: python -m nbconvert lab1.ipynb
+      - uses: actions/checkout@v5
+      - run: python -m nbconvert --to pdf lab1.ipynb
