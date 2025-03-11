@@ -7,8 +7,8 @@ jobs:
       - run: pip install nbconvert
       - uses: actions/checkout@v4
       - run: sudo apt-get install pandoc texlive-xetex inkscape
-      - run: python -m nbconvert --to pdf lab1/lab1.ipynb
+      - run: python -m nbconvert --to pdf --execute lab1/lab1.ipynb
       - uses: actions/upload-artifact@v4
         with:
-          name: lab1/lab1
-          path: lab1/lab1.pdf
+          name: lab1
+          path: lab1.pdf
