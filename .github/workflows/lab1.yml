@@ -5,4 +5,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: pip install nbconvert
+      - uses: actions/checkout
       - run: python -m nbconvert lab1.ipynb
