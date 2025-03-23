@@ -7,7 +7,7 @@ jobs:
       - run: pip install nbconvert ipykernel matplotlib pint numpy open-atmos-jupyter-utils
       - uses: actions/checkout@v4
       - run: sudo apt-get install pandoc texlive-xetex inkscape
-      - run: python -m nbconvert --to pdf --execute lab1/lab1.ipynb
+      - run: python -m nbconvert --to pdf --execute lab2/concentration_distribution_tomasz_makowski.ipynb
       - uses: actions/upload-artifact@v4
         with:
           name: lab2
