@@ -1,0 +1,30 @@
+name: artifacts_generation
+
+on: [push]
+
+jobs:
+  generate-pdfs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: |
+          pip install nbconvert ipykernel matplotlib pint numpy open-atmos-jupyter-utils
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-xetex inkscape
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Find and convert all notebooks to PDF
+        run: |
+          mkdir -p pdf_outputs
+          for nb in $(find . -name "*.ipynb"); do
+            echo "Converting $nb..."
+            jupyter nbconvert --to pdf --execute "$nb" --output-dir=pdf_outputs || echo "Failed: $nb"
+          done
+
+      - name: Upload all PDFs as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-artifacts
+          path: pdf_outputs/*.pdf
