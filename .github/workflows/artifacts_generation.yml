@@ -6,17 +6,8 @@ jobs:
   generate-pdfs:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Python 3.12.9
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.12.9
-
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
           pip install nbconvert ipykernel matplotlib pint numpy open-atmos-jupyter-utils scipy
           sudo apt-get update
           sudo apt-get install -y pandoc texlive-xetex inkscape
