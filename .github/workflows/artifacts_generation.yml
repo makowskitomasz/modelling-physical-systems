@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          pip install nbconvert ipykernel matplotlib pint numpy open-atmos-jupyter-utils scipy
+          pip install nbconvert ipykernel matplotlib pint numpy open-atmos-jupyter-utils scipy numba
           sudo apt-get update
           sudo apt-get install -y pandoc texlive-xetex inkscape
 
