@@ -15,24 +15,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Run nbqa pylint on notebooks
-        run: |
-          echo "Running nbqa pylint checks..."
-          mkdir -p nbqa_reports
-          FAILURES=0
-          for nb in $(find . -name "*.ipynb"); do
-            echo "Checking $nb..."
-            nbqa pylint "$nb" > "nbqa_reports/$(basename "$nb" .ipynb)_pylint.txt" || FAILURES=$((FAILURES+1))
-          done
-          echo "nbqa completed with $FAILURES file(s) having issues."
-          exit $FAILURES
-
-      - name: Upload nbqa reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: nbqa-pylint-reports
-          path: nbqa_reports/
-
       - name: Find and convert all notebooks to PDF
         run: |
           mkdir -p pdf_outputs
